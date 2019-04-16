@@ -10,8 +10,8 @@ using namespace std;
 #pragma region Global settings
 
 char *path = nullptr;
-char *input = "input.cpp";
-char *output = "output.cpp";
+char *input = new char[9]{'i', 'n', 'p', 'u', 't', '.', 'c', 'p', 'p'};
+char *output = new char[10]{'o', 'u', 't', 'p', 'u', 't', '.', 'c', 'p', 'p'};
 int tab = 4;
 vector<char *> include;
 
@@ -22,12 +22,7 @@ vector<char *> include;
 
 const int enum_cato_size = 4;
 
-char **enum_cato = new char *[enum_cato_size] {
-	"-in",
-		"-out",
-		"-I",
-		"-tab"
-};
+char **enum_cato = new char *[enum_cato_size] { new char[3] {'-', 'i', 'n'}, new char[4] {'-', 'o', 'u', 't'}, new char[2] {'-', 'I'}, new char[4] { '-', 't', 'a', 'b' } };
 
 void input_checker(vector<char *> s)
 {
@@ -69,6 +64,7 @@ vector<vector<char *>> to_check;
 
 int main(int argc, char *argv[])
 {
+
 //Анализ аргументов
 #pragma region Analyze args
 
