@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
+#include <strstream>
+#include <sstream>
 
 using namespace std;
 
@@ -160,6 +163,24 @@ int main(int argc, char *argv[])
 			cout << "failure" << endl,
 				throw new exception("error open output file");
 		cout << "successfully" << endl;
+
+#pragma region Analyze
+		char c, *m;
+		int enter = 0;
+		stringstream reader;
+		while (incpp.get(c))
+		{
+			if (c != ' ' && c != '\n')
+				reader << c;
+			else if (reader.str().length() > 0)
+			{
+				cout << reader.str() << endl;
+				reader.str(string());
+			}
+		}
+		cout << reader.str() << endl;
+
+#pragma endregion
 
 #pragma region Closing files
 		incpp.close();
