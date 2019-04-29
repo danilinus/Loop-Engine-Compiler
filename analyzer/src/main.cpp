@@ -20,6 +20,11 @@ vector<char *> include;
 
 #pragma endregion
 
+struct rInclude
+{
+	string s;
+};
+
 struct rVariable
 {
 	string name = nullptr;
@@ -165,20 +170,36 @@ int main(int argc, char *argv[])
 		cout << "successfully" << endl;
 
 #pragma region Analyze
-		char c, *m;
+		char c, *m = nullptr;
 		int enter = 0;
 		stringstream reader;
 		while (incpp.get(c))
 		{
-			if (c != ' ' && c != '\n')
+			if (c != ' ' && c != '\n' && c != '\t')
 				reader << c;
 			else if (reader.str().length() > 0)
 			{
-				cout << reader.str() << endl;
+				if (reader.str() == "#include")
+					m = new char[3]{'i', 'n', 'c'};
+				if (reader.str() == "}" || reader.str() == "};")
+					enter--;
+				cout << enter << " : " << reader.str() << endl;
+				if (reader.str() == "{")
+					enter++;
 				reader.str(string());
 			}
 		}
-		cout << reader.str() << endl;
+		if (reader.str().length() > 0)
+		{
+			if (reader.str() == "#include")
+				m = new char[3]{'i', 'n', 'c'};
+			if (reader.str() == "}" || reader.str() == "};")
+				enter--;
+			cout << enter << " : " << reader.str() << endl;
+			if (reader.str() == "{")
+				enter++;
+			reader.str(string());
+		}
 
 #pragma endregion
 

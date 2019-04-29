@@ -4,10 +4,10 @@ using namespace std;
 
 class Animal
 {
-    string type;
+	string type;
 };
 
 class Dog : Animal
 {
-    string poroda;
+	string poroda;
 };
